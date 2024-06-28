@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Performa Invoice</title>
+  <style>
+    /* Add your custom CSS styles here */
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+    .main-panel {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+    }
+    .color-font {
+      color: #333; /* Change font color to black */
+    }
+    .maintitle {
+      margin-bottom: 20px;
+    }
+    .invoice {
+      width: 100%;
+    }
+    .invoice th,
+    .invoice td {
+      border: 1px solid #ccc;
+      padding: 8px;
+    }
+    .invoice th {
+      background-color: #f2f2f2;
+      text-align: left;
+    }
+    .invoice .invsubtitle {
+      font-weight: bold;
+    }
+    .table-responsive {
+      overflow-x: auto;
+    }
+    .button-box {
+      margin-top: 20px;
+    }
+    .button-box .btn {
+      margin-right: 10px;
+    }
+    .additional-details {
+      margin-top: 20px;
+    }
+    .additional-details ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .additional-details li {
+      margin-bottom: 5px;
+    }
+    .grand-total {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="row">
+        <!-- Add your company logo and details here -->
+      </div>
+      <div class="box-body" id="perfomainvoice">
+        <div class="table-responsive">
+          <table class="invoice">
+            <tr>
+              <!-- Customer Details -->
+              <td>
+                <div class="row">
+                  <div class="col-lg-6 grid-margin text-left">
+                    <h4 class="color-font"><strong>Customer Details</strong></h4>
+                    <ul class="list-unstyled">
+                      <li class="color-font"><strong>Customer Name:</strong> <?php echo ucfirst($customerdetail->CU_Name); ?></li>
+                      <li class="color-font"><strong>Customer Phone:</strong> <?php echo $customerdetail->CU_Phone; ?></li>
+                      <li class="color-font"><strong>Customer Address:</strong> <?php echo ucfirst($customerdetail->CU_Address); ?></li>
+                      <li class="color-font"><strong>GSTIN/UIN:</strong> <?php echo $customerdetail->CU_Gst_No; ?></li>
+                      <li class="color-font"><strong>Order Date:</strong> <?php echo date("d-m-Y", strtotime($order_number->PD_Order_Date)); ?></li>
+                      <!-- Add more customer details as needed -->
+                    </ul>
+                  </div>
+                </div>
+              </td>
+              <!-- Additional User Details -->
+              <!--<td valign="top">
+                <div class="row">
+                  <div class="col-md-12 col-sm-12 text-right">
+                    <h4 class="color-font"><strong>User Details</strong></h4>
+                    <ul class="list-unstyled">
+                      <li class="color-font"><strong>User Name:</strong> <?php echo ucfirst($customerdetail->US_Name); ?></li>
+                      <li class="color-font"><strong>GSTIN/UIN:</strong> 32AAVFG6290P1ZJ</li>
+                      <!-- Add more user details as needed -->
+                    <!--</ul>
+                  </div>
+                </div>
+              </td>-->
+            </tr>
+          </table>
+        </div>
+        <div class="color-font">
+          <center>
+            <strong>PERFORMA INVOICE</strong>
+            <hr>
+          </center>
+        </div>
+        <div class="table-responsive">
+          <table class="invoice">
+            <thead>
+              <tr>
+                <th>Perfoma Order No. & Date</th>
+                <th>Delivery Date</th>
+                <th>Pur. Order No & Date</th>
+                <th>Destination</th>
+                <th>E-Way Bill No</th>
+              </tr>
+              <tr>
+                <th>
+                  <?php echo $customerdetail->Perfoma_Code,'-0',$customerdetail->CU_Id; ?><br>
+                  <?php
+                    $PD_Order_Date = date_create($order_number->PD_Order_Date);
+                    echo date_format($PD_Order_Date, "d-M-Y");
+                  ?>
+                </th>
+                <th>
+                  <!-- Add delivery date here -->
+                </th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+              </tr>
+              <tr>
+                <th>Name & Address Of Buyer:</th>
+                <td>&nbsp;</td>
+                <th>Name & Address Of Consignee:</th>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th class="invsubtitle"><?php echo $customerdetail->CU_Name; ?></th>
+                <td>&nbsp;</td>
+                <th class="invsubtitle"><?php echo $customerdetail->CU_Name; ?></th>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th class="invsubtitle"><?php echo $customerdetail->CU_Phone; ?></th>
+                <td>&nbsp;</td>
+                <th class="invsubtitle"><?php echo $customerdetail->CU_Phone; ?></th>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th class="invsubtitle"><?php echo $customerdetail->CU_Address; ?></th>
+                <td>&nbsp;</td>
+                <th class="invsubtitle"><?php echo $customerdetail->CU_Address; ?></th>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div class="clearfix">&nbsp;</div>
+        <div class="color-font">
+          <center>
+            <strong>Product Details</strong>
+            <hr>
+          </center>
+        </div>
+        <div class="table-responsive">
+          <table class="invoice">
+            <thead>
+              <tr>
+                <th>Product Type</th>
+                <th>Product Name</th>
+                <th>Height</th>
+                <th>Width</th>
+                <th>Height(mm)</th>
+                <th>Width(mm)</th>
+                <th>Height(mm)</th>
+                <th>Width(mm)</th>
+                <th>Pieces</th>
+                <th>Sq.F</th>
+                <th>Sqmtr</th>
+                <th>Total Sqmtr</th>
+                <!-- Add more product details if needed -->
+                <!--<th>Rate</th>
+                <th>Net Price</th>
+                <th>Total Price</th>-->
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+                foreach ($view_details as $vd) {
+              ?>
+              <tr>
+                <td><?php echo $vd->Edge_type; ?></td>
+                <td><?php echo ucfirst($vd->Name); ?></td>
+                <td><?php echo $vd->PD_Height; ?> <?php echo $vd->UN_Name; ?></td>
+                <td><?php echo $vd->PD_Width; ?> <?php echo $vd->UN_Name; ?></td>
+                <?php
+                  if ($vd->UN_Id == 1) {
+                    $heightmm = $vd->PD_Height * 10;
+                    $widthmm = $vd->PD_Width * 10;
+                  } elseif ($vd->UN_Id == 2) {
+                    $heightmm = $vd->PD_Height * 25.4;
+                    $widthmm = $vd->PD_Width * 25.4;
+                  } elseif ($vd->UN_Id == 3) {
+                    $heightmm = $vd->PD_Height * 304.79999025;
+                    $widthmm = $vd->PD_Width * 304.79999025;
+                  } else {
+                    $heightmm = $vd->PD_Height;
+                    $widthmm = $vd->PD_Width;
+                  }
+                ?>
+                <td><?php echo $heightmm; ?></td>
+                <td><?php echo $widthmm; ?></td>
+                <?php
+                  if ($vd->UN_Id == 1) {
+                    $heightmm = $vd->PD_Height * 10;
+                    $widthmm = $vd->PD_Width * 10;
+                  } elseif ($vd->UN_Id == 2) {
+                    $heightmm = $vd->PD_Height * 25.4;
+                    $widthmm = $vd->PD_Width * 25.4;
+                  } elseif ($vd->UN_Id == 3) {
+                    $heightmm = $vd->PD_Height * 304.79999025;
+                    $widthmm = $vd->PD_Width * 304.79999025;
+                  } else {
+                    $heightmm = $vd->PD_Height;
+                    $widthmm = $vd->PD_Width;
+                  }
+                ?>
+                <td><?php echo $heightmm + $vd->PD_Waste; ?></td>
+                <td><?php echo $widthmm + $vd->PD_Waste; ?></td>
+                <td><?php echo $vd->PD_Quantity; ?></td>
+                <td><?php echo $vd->sqf; ?></td>
+                <td><?php echo $vd->sqm; ?></td>
+                <td><?php echo $vd->product_quantity_sqm; ?></td>
+                <!--<td>₹<?php echo $vd->total_price; ?></td>-->
+              </tr>
+              <?php
+                }
+              ?>
+            </tbody>
+          </table>
+        </div>
+        <hr class="nomargin-top">
+        <div class="row">
+          <div class="col-sm-6 text-left">
+            <ul class="list-unstyled">
+              <li class="color-font"><b>Total Taxable Amount:</b> ₹<?php echo $taxable_amounts; ?></li>
+              <?php
+                foreach ($additional_details as $ad) {
+              ?>
+              <li class="color-font"><b><?php echo $ad->AU_Item; ?>:</b> <?php echo $ad->AD_Quantity; ?>&nbsp;X&nbsp;<?php echo $ad->AD_Unit_Price; ?></li>
+              <?php
+                }
+              ?>
+              <!--<li class="color-font"><b>Hole:</b></li>
+              <li class="color-font"><b>Hole(Big):</b></li>
+              <li class="color-font"><b>L Shape:</b></li>
+              <li class="color-font"><b>Wheel Cut:</b></li>
+              <li class="color-font"><b>Shape Cut:</b></li>
+              <li class="color-font"><b>Froasting Charge:</b></li>
+              <li class="color-font"><b>Bevelling Charge:</b></li>
+              <li class="color-font"><b>Document Charge:</b> 1 X 650</li>
+              <li class="color-font"><b>Handling Charge:</b> 1 X 150</li>
+              <li class="color-font"><b>Transportation:</b> 10.0%</li>
+              <li class="color-font"><b>Cash Discount Paid:</b> 10.0%</li>-->
+              <li class="color-font"><b>CGST @ 9%:</b> ₹<?php echo $cgst; ?></li>
+              <li class="color-font"><b>SGST @ 9%:</b> ₹<?php echo $sgst; ?></li>
+              <li class="color-font"><b>Total Quantity:</b> <?php echo $total_sqmtr; ?> Sqmtr</li>
+              <li class="color-font"><b>Rate (1 sqrmtr):</b> ₹<?php echo $price; ?></li>
+              <li class="color-font"><b>Net Price:</b> ₹<?php echo $net_price; ?></li>
+              <!--<li class="color-font"><b>Round Off:</b></li>-->
+              <li class="color-font"><b>Total Additional Charges:</b> ₹<?php echo $total_additional_charges->total_additional_charges; ?></li>
+              <li class="color-font"><b>Total Tax Amount:</b> ₹<?php echo $total_tax; ?></li>
+              <li class="color-font"><b><h4>Grand Total:</h4></b> ₹<?php echo $grand_total; ?></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default text-right button-box">
+        <div class="panel-body">
+          <?php
+            $linkName = $customerdetail->CU_Id;
+            $status = $vd->PD_Status;
+            if ($status < 2) {
+          ?>
+          <a class="btn btn-danger" href="<?php echo AD_BASE_PATH . 'rejected_enquiries/reject_enquiry/' . $linkName; ?>"><i class="fa fa-ban"></i> Reject</a>
+          <a class="btn btn-primary" href="<?php echo AD_BASE_PATH . 'work_order/work_order/' . $linkName . '"'; ?>"><i class="fa fa-check"></i> Accept</a>
+          <?php
+            }
+          ?>
+          <a class="btn btn-success" onclick="printDiv()"><i class="fa fa-print"></i> PRINT INVOICE</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script to print the invoice -->
+  <script>
+    function printDiv() {
+      var printContents = document.getElementById("perfomainvoice").innerHTML;
+      var originalContents = document.body.innerHTML;
+      document.body.innerHTML = printContents;
+      window.print();
+      document.body.innerHTML = originalContents;
+    }
+  </script>
+</body>
+</html>

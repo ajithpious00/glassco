@@ -1,0 +1,36 @@
+button .btnadd{
+background-color:#3257DF;
+color:#F4F5F8;
+font-family:Sans-serif;
+text-align:right;
+}
+table tr td, table tr th, .dataTables_length, .dataTables_filter {
+	color:#000 !important;
+	font-size:14px;
+}
+.dataTables_filter input, .dataTables_length select {
+	border:#ccc 1px solid !important;
+	border-radius:5px !important;
+	font-size: 12px !important;
+	height:25px !important;
+}
+.dataTables_info {
+	font-size:12px !important;
+	color:#999 !important;
+}
+.dataTables_paginate {
+	font-size:12px !important;
+}
+.alert , .finished{
+	display:none;
+}
+.navbar .navbar-brand-wrapper .navbar-brand img {
+    width: calc(258px - 100px) !important;
+    max-width: 100%;
+    height: 50px !important;
+    margin: auto;
+    vertical-align: middle;
+}
+.responsive-table {
+	overflow-x:auto !important;
+}	
